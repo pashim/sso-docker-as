@@ -1,0 +1,21 @@
+version: '3'
+
+volumes:
+  auth-data:
+    external: false
+
+services:
+  postgres:
+    image: postgres:11-alpine
+    container_name: auth-db
+    restart: always
+    volumes:
+    - auth-data:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+
+  adminer:
+    image: adminer:4.7-standalone
+    restart: always
+    ports:
+    - 8090:8080
